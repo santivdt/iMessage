@@ -1,0 +1,396 @@
+@font-face {
+  font-family: 'Roboto slab';
+  src:  url('../fonts/RobotoSlab-Bold.ttf') format('ttf'),
+  url('../fonts/RobotoSlab-Light.ttf') format('ttf'),
+  url('../fonts/RobotoSlab-Regular.ttf') format('ttf'),
+  url('../fonts/RobotoSlab-Thin.ttf') format('ttf');
+}
+
+html, body{
+  margin: 0px;
+  padding: 0px;
+  outline: 0px;
+  height: 100%;
+  font-size: 16px;
+  font-family: Roboto slab;
+}
+
+.navbar {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  border-radius: 0px;
+  height: 80px;
+  background-color:#455164;
+}
+
+.w3c {
+  margin-top: 15px;
+}
+
+.navbar .navbar-brand {
+  padding: 0px;
+}
+
+
+.navbar ul li {
+  height: 80px;
+}
+
+.navbar ul li a {
+  padding: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #ddd;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.light-text {
+  color: white;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #455164;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  color: #455164;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #455164;
+}
+
+h4 {
+  font-size: 1rem;
+  color: #666;
+}
+
+footer {
+  padding: 40px 0px 20px 0px;
+  background-color:#ECEFF1;
+}
+
+footer img {
+  margin-top: 20px;
+}
+
+footer h4 {
+  margin-top: 0px;
+  color: rgba(0,0,0,0.87);
+  font-weight: 400;
+  font-family: Roboto;
+  font-size: 1rem;
+  letter-spacing: .02em;
+  margin-top: 30px;
+}
+
+footer ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+footer img {
+  margin-bottom: 30px;
+}
+footer a {
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: .02em;
+  font-family: Roboto;
+  color: rgba(0,0,0,0.87);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #536DFE;
+  text-decoration: none;
+}
+
+footer .copyright {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+
+  html, body {
+    font-size: 16px;
+  }
+  img {
+    max-width: 100%;
+  }
+  .navbar {
+    height: 80px;
+  }
+}
+
+
+/* WHAT USED TO BE TOOLS.CSS */
+
+header {
+  background: linear-gradient(to right, #448AFF, #2979FF, #2962FF);
+}
+
+header nav {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+header #hero {
+  padding: 100px 0px 100px 0px;
+  text-align: center;
+}
+
+header #hero h1.motto {
+  font-size: 2rem;
+  font-family: Roboto;
+  color: rgba(255, 255, 255, 1);
+  margin: auto;
+  letter-spacing: .02rem;
+  font-weight: 700;
+  line-height: 4rem;
+  margin-bottom: 50px;
+}
+
+header #hero .explore {
+  padding: 20px 30px 20px 30px;
+  background-color: #448AFF;
+  font-family: Roboto;
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+
+#tools {
+  padding: 0px 0px 50px 0px;
+  text-align: center;
+  background-color: white;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+
+  header #hero {
+    padding: 80px 0px 100px 0px;
+  }
+
+  header #hero h1.motto {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+  }
+
+}
+
+
+#search {
+  background-color: #F5F5F5;
+  padding-top: 20px;
+  padding-bottom: -20px;
+}
+
+#messages {padding-top: 20px;}
+
+#results {
+  background-color: #F5F5F5;
+  padding: 50px 0px 50px 0px;
+}
+
+#results p {
+  line-height: 1.8rem;
+}
+
+#results h2 a {
+  color: #536DFE;
+  text-decoration: none;
+  letter-spacing: 0.02rem;
+}
+
+#results p.call-to-action a {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #536DFE;
+  text-decoration: none;
+  letter-spacing: 0.02rem;
+}
+
+#results h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(0,0,0,0.87);
+  font-family: Roboto;
+  letter-spacing: 0.02rem;
+}
+
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+tr:nth-child(even) {background: #f5f5f5}
+tr:nth-child(odd) {background: #FFF}
+
+th {
+  padding: 5px;
+}
+
+/* opmaak van tekst in resultaten tabel */
+td {
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: left;
+}
+
+th, td {
+  padding: 0px 15px;
+}
+
+thead tr:first-child th:first-child {
+  border-radius: 0.6em 0 0 0;
+  background-color: #f5f5f5;
+}
+thead tr:first-child th:last-child {
+  border-radius: 0 0.6em 0 0;
+  background-color: #f5f5f5;
+}
+tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 0.6em;
+}
+tbody tr:last-child td:last-child {
+  border-radius: 0 0 0.6em 0;
+}
+
+.messagesVis h9 {
+  font-family: "Helvetica Neue";
+}
+
+
+/* fade effect */
+
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.messages {
+  list-style: none;}
+
+
+.messagesVis{
+  border-radius: 15px;
+  display: block;
+  padding-left: 10px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  width: auto!important;
+  color: white;
+  max-width: 66%;
+  min-width: 50%;
+  clear: both;
+  border: none;
+  font-size: medium;
+}
+
+
+.messages li {
+  height: auto;
+  padding-top: 8px;
+  width: 100%;
+}
+
+
+
+.other {
+  background-color: #2198fa!important;
+  float: right;
+  color: #FFFFFF!important;
+
+}
+
+
+.me {
+  background-color: #e5e5ea!important;
+  color: #000000;
+  float: left;
+  /*background: lightseagreen!important; /* For browsers that do not support gradients */
+  /*background: -webkit-linear-gradient(lightseagreen, #caf7f3); /* For Safari 5.1 to 6.0 */
+  /*background: -o-linear-gradient(lightseagreen, yellow); /* For Opera 11.1 to 12.0 */
+  /*background: -moz-linear-gradient(lightseagreen, yellow); /* For Firefox 3.6 to 15 */
+  /*background: linear-gradient(lightseagreen, white); /* Standard syntax */
+
+}
+
+
+.menu {
+
+}
+
+#frame {
+  max-height:250px;
+  overflow-y: auto;
+
+}
+
+#frame::-webkit-scrollbar {
+  width: 12px;
+}
+
+#frame::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+
+#frame::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}

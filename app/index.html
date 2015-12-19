@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" ng-app="dataDash">
+<head>
+  <meta charset="utf-8">
+  <title>iMsg Analyzer</title>
+    <meta name="description" content="Analyse what you have been talking about and with whom, how often and when. Everything you always wanted to know visualized!">
+    <meta name="keywords" content="analyze, aivd, messages, imsg, statistics, data">
+    <meta name="author" content="Santi van den Toorn productions">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- jQuery is used for JavaScript animations (include this before angular.js) -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- required module to enable animation support in AngularJS -->
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,300,100,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700' rel='stylesheet' type='text/css'>
+ <!-- <link rel="stylesheet" href="css/app1.css">-->
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="stylesheet" href="css/animate.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers1.js"></script>
+    <link rel="icon"
+
+          href="img/favicon.ico">
+</head>
+<body ng-controller="imsgCtrl" >
+
+
+
+    <!-- header row-->
+    <header>
+        <nav>
+            <div class="container-fluid">
+
+            </div>
+        </nav>
+        <div id="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="motto">
+                            iMessage Analyzer <br> Know what's up.
+                        </h1>
+                        <p>
+                            <a class="explore">About</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <main id="tools">
+       <section id="search">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-8 menu">
+
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="query" placeholder="Search..." id="query">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control"  ng-model="date" placeholder="yyyy-mm-dd" id="date">
+                        </div>
+                        <button ng-show="query"  ng-click="addTerm()" class="btn btn-default">Add query</button>
+                        <button ng-show="date" ng-click="addDate()" class="btn btn-default">Add date</button>
+                        <button ng-show="date && query" ng-click="addTerm() && addDate()" class="btn btn-default">Add both</button>
+
+                    </form>
+
+                    <p ng-show="query"> {{filtered.length}} messages were found containing your search query.</p><BR>
+                    <p ng-show="date"> {{filtered.length}} messages were found for your selected date.</p>
+
+
+                </div>
+
+                <div class="col-md-2"></div>
+
+            </div>
+
+        </div>
+       </section>
+
+       <section id="messages">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-4 fade-in">
+                    <h2>Messages</h2>
+
+                    <div id="frame">
+                            <ul>
+                                <li ng-repeat="message in filtered = (messages | filter:query | filter:date)" class="messagesVis" ng-class="{other:message.fromMe== 0, me:message.fromMe==1}" >
+
+                            <span class="text-left animated bounceIn" ng-if="message.fromMe == 0">
+                              <h9></h9>
+                              <h9></h9>
+                            </span>
+                            <span ng-if="message.fromMe == 1">
+                             <h9></h9>
+                            </span>
+                                    <h9>{{message.text}}<br>
+                                   <!--{{message.date | date:'dd-MM-yy  HH:mm'}}--></h9>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+               <div class="col-md-1"></div>
+                <div class="col-md-3 fade-in"><h2>Results<br>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th><h4>Word</h4></th>
+
+                            <th><h4>Count</h4></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="term in terms">
+                            <td >{{term.text}}</td>
+
+                            <td>{{term.count}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </h2></div>
+                <div class="col-md-2"></div>
+
+            </div>
+
+        </div>
+       </section>
+
+    </main>
+
+
+    <section id="results">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <img src="img/data.png" width="" alt="">
+                </div>
+                <div class="col-md-5">
+                    <h2>Results table</h2>
+                    <p>
+
+                    </p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th><h4>Word</h4></th>
+
+                            <th><h4>Count</h4></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="term in terms">
+                            <td >{{term.text}}</td>
+
+                            <td>{{term.count}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer row-->
+    <footer>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                   <img src="img/svdt.png"  height="50" alt="SvdT productions"></a>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <h4>About</h4>
+                    <ul>
+                        <li>
+                            <a href="">Content</a>
+                        </li>
+                        <li>
+                            <a href="">Content</a>
+                        </li>
+                        <li>
+                            <a href="">Content</a>
+                        </li>
+                        <li>
+                            <a href="/"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li>
+                            <a href="">Twitter</a>
+                        </li>
+                        <li>
+                            <a href="">Github</a>
+                        </li>
+                        <li>
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <h4>More</h4>
+                    <ul>
+                        <li>
+                            <a href=""></a>
+                        </li>
+                        <li>
+                            <a href=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="copyright">
+                        Copyright © 2015
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

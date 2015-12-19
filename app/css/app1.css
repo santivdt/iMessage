@@ -1,0 +1,223 @@
+/* app css stylesheet */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+li {
+  list-style: none;
+
+}
+
+.messages {
+  list-style: none;
+  /*float: right;
+  width: 40%;
+  padding-right: 10px;
+  margin-right: 20px;*/}
+
+.menu {
+  list-style: none;
+  float: left;
+  width: 30%;
+  margin-left: 20px;
+
+}
+
+.messagesVis{
+  border-radius: 15px;
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  width: auto!important;
+  color: white;
+  max-width: 50%;
+  clear: both;
+  border: none;
+}
+
+.thumb {
+  float: left;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
+  height: 100px;
+  width: 100px;
+}
+
+.messages li {
+  clear: both;
+  height: auto;
+  padding-top: 8px;
+  width: 100%;
+  font: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.date.messages {
+  text-align: right;
+  align-content: right;
+  color: grey;
+}
+
+
+
+.other {
+  background-color: lightskyblue!important;
+  float: right;
+
+}
+
+
+.me {
+  background-color: lightsteelblue!important;
+  float: left
+  /*background: lightseagreen!important; /* For browsers that do not support gradients */
+  /*background: -webkit-linear-gradient(lightseagreen, #caf7f3); /* For Safari 5.1 to 6.0 */
+  /*background: -o-linear-gradient(lightseagreen, yellow); /* For Opera 11.1 to 12.0 */
+  /*background: -moz-linear-gradient(lightseagreen, yellow); /* For Firefox 3.6 to 15 */
+  /*background: linear-gradient(lightseagreen, white); /* Standard syntax */
+
+}
+
+
+
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+
+th {
+  font-weight: bold;
+  padding: 2px;
+  color: white;
+}
+
+
+td {
+  padding: 5px;
+}
+
+th, td {
+  padding: 0.5em 1em;
+}
+thead tr:first-child th:first-child {
+  border-radius: 0.6em 0 0 0;
+  background-color: lightgrey;
+}
+thead tr:first-child th:last-child {
+  border-radius: 0 0.6em 0 0;
+  background-color: lightgrey;
+}
+tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 0.6em;
+}
+tbody tr:last-child td:last-child {
+  border-radius: 0 0 0.6em 0;
+}
+
+
+
+a { color: #F89CDE; }
+
+
+.header {
+  height: 30%!important;
+  color: white;
+  background-color: #296BFF;
+  align-content: center;
+  text-align: center;
+  clear: both;
+  margin-bottom: 20px;
+  min-height: 30%;
+
+}
+
+.header h1 {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: whitesmoked;
+  font-size: 4em;
+
+}
+
+.move-right{
+  opacity: 0;
+  -webkit-animation:comeInRight 1;
+  -moz-animation:comeInRight 1;
+  animation:comeInRight 1;
+
+  -webkit-animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  -o-animation-duration: 3s;
+  animation-duration: 3s;
+
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  -o-animation-delay: 0.1s;
+  transition-delay: 0.1s;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+
+
+
+.header p {
+  color: whitesmoke;
+  
+  }
+
+
+
+.header img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
+
+.footer {
+  height: 300px!important;
+  background-color: lightblue;
+  min-height: 100px;
+
+}
+
+
+
+  .btn {margin-top: 10px!important;}
+}
+
+
+
+/* fade effect */
+
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+

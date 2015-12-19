@@ -1,0 +1,61 @@
+<div ng-controller="imsgCtrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+
+                <!-- TODO add select by date feature, add the search querys and their counts to the table, create overview with clickable links to people)-->
+
+                <!--Sidebar content-->
+
+                Search: <input ng-model="query" placeholder="search"><br><BR>
+                <button ng-click="addTerm">Add to table</button>
+                <br>
+                <!--Sort by:
+                <select ng-model="orderProp">
+                  <option value="name">Alphabetical</option>
+                  <option value="age">Newest</option>-->
+                <br>
+                <h20 ng-show="query"> {{filtered.length}} messages were found containing your search query.</h20><br><br>
+
+                <!-- table for displaying search results-->
+                <table>
+                    <tr>
+                        <th>Word</th>
+                        <th>Count</th>
+                    </tr>
+                    <tr>
+                        <td ng-repeat="term in terms"></td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+
+            </div>
+            <div class="col-md-6">
+                <div>
+
+                    <!--Body content-->
+                    <h2 ng-show="query">You are searching for {{query}}</h2><br><br>
+                    <h2 ng-show="orderProp">Results sorted on {{orderProp}}</h2>
+
+                    <ul class="messages">
+                        <li ng-repeat="message in filtered = (messages | filter:query) | orderBy:orderProp" class="messagesVis" ng-class="{other:message.fromMe== 0, me:message.fromMe==1}" >
+
+            <span ng-if="message.fromMe == 0">
+              Daphne:&nbsp;
+            </span>
+            <span ng-if="message.fromMe == 1">
+              Santi:&nbsp;
+            </span>
+                            {{message.text}}<br>
+                            <span class="date">{{message.date | date:'dd-MM-yy  HH:mm'}}</span>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>

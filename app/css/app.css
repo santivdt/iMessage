@@ -1,0 +1,180 @@
+/* app css stylesheet */
+
+body {
+  padding-top: 20px;
+  color: darkslategrey;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+li {
+  list-style: none;
+
+}
+
+.messages {
+  list-style: none;
+  float: right;
+  width: 70%;
+  padding-right: 10px;}
+
+.menu {
+  list-style: none;
+  float: right;
+  width: 70%;
+
+}
+
+.messagesVis{
+  border-radius: 9px;
+  display: block;
+  padding: 10px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  border: 1px solid #ddd;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  width: auto!important;
+  color: white;
+  max-width: 50%;
+}
+
+.thumb {
+  float: left;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
+  height: 100px;
+  width: 100px;
+}
+
+.messages li {
+  clear: both;
+  height: auto;
+  padding-top: 8px;
+  width: 100%;
+  font: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.date.messages {
+  text-align: right;
+  align-content: right;
+  color: grey;
+}
+
+
+
+.other {
+  background-color: lightskyblue!important;
+  float: right;
+
+}
+
+
+.me {
+  background-color: lightseagreen!important;
+  float: left
+
+}
+
+
+.people {
+  list-style: none;
+};
+
+.people li {
+  clear: both;
+  height: auto;
+  padding-top: 8px;
+  width: 100%;
+  font: Verdana, Arial, Helvetica, sans-serif;
+  float: left;
+
+};
+
+.h20 {
+  color: blue;
+
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+
+th {
+  font-weight: bold;
+  padding: 2px;
+  color: white;
+}
+
+
+td {
+  padding: 5px;
+}
+
+th, td {
+  padding: 0.5em 1em;
+}
+thead tr:first-child th:first-child {
+  border-radius: 0.6em 0 0 0;
+  background-color: #F89CDE;
+}
+thead tr:first-child th:last-child {
+  border-radius: 0 0.6em 0 0;
+  background-color: #F89CDE;
+}
+tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 0.6em;
+}
+tbody tr:last-child td:last-child {
+  border-radius: 0 0 0.6em 0;
+}
+
+
+
+a { color: #F89CDE; }
+
+
+.header {
+  height: 30%!important;
+  color: #F89CDE!important;
+  width: 100%;
+  align-content: center;
+  text-align: center;
+
+}
+
+
+
+.header img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
+}
+
+.nav-pills {
+  margin-bottom: 30px;
+  max-width: 30%;
+}
+
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus{
+  color: #ac005f;
+}
+
+.nav-pills > li.active > a,
+.btn-primary,
+.btn-primary:focus {
+  background: #ac005f;
+  border: 0;
+}
+
+.nav-pills > li.active > a:hover,
+.btn-primary:hover {
+  background: #ac005f;
+}
+
+.nav li {
+  float: left;
+  display: inline-block;
+}

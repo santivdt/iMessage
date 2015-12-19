@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" ng-app="dataDash">
+<head>
+  <meta charset="utf-8">
+  <title>iMsg LOL</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../js/controllers.js"></script>
+</head>
+<body >
+<div ng-controller="imsgCtrl">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query"><br><br>
+        <!--Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>-->
+        </select>
+
+      </div>
+    <div class="col-md-6">
+      <div>
+
+        <!--Body content-->
+        <h2 ng-show="query">You are searching for {{query}}</h2><br><br>
+          <h2 ng-show="orderProp">Results sorted on {{orderProp}}</h2>
+
+        <ul class="messages">
+          <li ng-repeat="message in messages | filter:query | orderBy:orderProp" class="messagesVis" ng-class="{other:message.fromMe== 0, me:message.fromMe==1}" >
+
+            <span ng-if="message.fromMe == 0">
+              Daphne:&nbsp;
+            </span>
+            <span ng-if="message.fromMe == 1">
+              Santi:&nbsp;
+            </span>
+            {{message.text}}<br>
+            <span class="date">{{message.date | date:'yyyy-MM-dd  HH:mm'}}</span>
+          </li>
+        </ul>
+
+
+    </div>
+  </div>
+</div>
+
+
+<div ng-controller="SantiCtrl">
+
+</div>
+
+</body>
+</html>
