@@ -1,22 +1,21 @@
-/**
- * Created by Santi on 16/12/15.
- */
+
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/27017/test');
+var express  = require('express');
+var app      = express();     // create our app w/ express //Create server http://stackoverflow.com/questions/18544815/mongoose-connect-method-fails-on-simple-node-server-express-mongoose-path
+var morgan = require('morgan');             // log requests to the console (express4)
+var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
+var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+
+var db = mongoose.createConnection(
+    'mongodb://localhost/test');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
-    // yay!
+    console.log('success connection!');
 });
 
-var express  = require('express');
-var app      = express();                               // create our app w/ express //Create server http://stackoverflow.com/questions/18544815/mongoose-connect-method-fails-on-simple-node-server-express-mongoose-path
-                   // mongoose for mongodb
-var morgan = require('morgan');             // log requests to the console (express4)
-var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
-var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 
 app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will // be /img for users
@@ -39,6 +38,26 @@ app.get('*', function(req, res) {
 });
 
 
+var collection = db.collection('messages');
+//Create some users
+var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
+var user2 = {name: 'modulus user', age: 22, roles: ['user']};
+var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
+
+// Insert some users
+collection.insert([user1, user2, user3], function (err, result) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
+    }
+    //Close connection
+    db.close();
+});
+
+
+
+
 // define mongoose schema
 
 var messageSchema = mongoose.Schema({
@@ -51,29 +70,63 @@ var messageSchema = mongoose.Schema({
 
 var Message = mongoose.model('Message', messageSchema);
 
-// data
-
-data = [
-    {
-        "text": "hahahhaha",
-        "fromMe": 1,
-        "date": "Thu Dec 03 2015 14:50:07 GMT+0100 (CET)"
-    },
-    {
-        "text": "tis een sketch bestand dus zal t nooit kunnen zien.",
-        "fromMe": 1,
-        "date": "Thu Dec 03 2015 14:50:21 GMT+0100 (CET)"
-    },
-    {
-        "text": "ik kan na de twee weken dat ik je ken al 1000 dingen noemen waar je beter in bent.",
-        "fromMe": 1,
-        "date": "Thu Dec 03 2015 14:51:46 GMT+0100 (CET)"
-    }
-]
-
-
 
 //construct new message
 
 var bericht = new Message({ text: 'hoi daphne' });
 console.log(bericht.text);
+
+// routes ======================================================================
+
+/ api ---------------------------------------------------------------------
+    // get all todos
+    app.get('/api/todos', function(req, res) {
+
+        // use mongoose to get all todos in the database
+        Todo.find(function(err, todos) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(todos); // return all todos in JSON format
+        });
+    });
+
+// create todo and send back all todos after creation
+app.post('/api/todos', function(req, res) {
+
+    // create a todo, information comes from AJAX request from Angular
+    Todo.create({
+        text : req.body.text,
+        done : false
+    }, function(err, todo) {
+        if (err)
+            res.send(err);
+
+        // get and return all the todos after you create another
+        Todo.find(function(err, todos) {
+            if (err)
+                res.send(err)
+            res.json(todos);
+        });
+    });
+
+});
+
+// delete a todo
+app.delete('/api/todos/:todo_id', function(req, res) {
+    Todo.remove({
+        _id : req.params.todo_id
+    }, function(err, todo) {
+        if (err)
+            res.send(err);
+
+        // get and return all the todos after you create another
+        Todo.find(function(err, todos) {
+            if (err)
+                res.send(err)
+            res.json(todos);
+        });
+    });
+});

@@ -8,17 +8,32 @@ var dataDash = angular.module('dataDash', []);
 
 dataDash.controller('imsgCtrl', ['$scope', '$http', function($scope, $http) {
 
-    $http.get('data/daphne_small.json').success(function(data) {
-
-        $scope.messages = data;
-        angular.forEach(data, function(value, key)
-                {
-            var date = new Date(value.date);
-            value.date = date.toISOString();
+    $http.get('/api/messages')
+        .success(function(data) {
             $scope.messages = data;
-                });
-
+            //angular.forEach(data, function(value, key)
+            //{
+            //    var date = new Date(value.date);
+            //    value.date = date.toISOString();
+            //    $scope.messages = data;
+            //});
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
         });
+    //
+    //$http.get('data/daphne_small.json').success(function(data) {
+    //
+    //    $scope.messages = data;
+    //    angular.forEach(data, function(value, key)
+    //            {
+    //        var date = new Date(value.date);
+    //        value.date = date.toISOString();
+    //        $scope.messages = data;
+    //            });
+    //
+    //    });
 
     $http.get('data/people.json').success(function(data) {
         $scope.people = data;
