@@ -2,11 +2,38 @@
 
 /* Controllers */
 
-var dataDash = angular.module('dataDash', []);
+// Define app and its dependencies
+
+var dataDash = angular.module('dataDash', ['firebase', 'ui.router']);
 
 
 
-dataDash.controller('imsgCtrl', ['$scope', '$http', function($scope, $http) {
+dataDash.config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/home');
+
+    $stateProvider
+
+    // HOME STATES AND NESTED VIEWS ========================================
+        .state('home', {
+            url: '/home',
+            templateUrl: '../views/home.html'
+        })
+
+        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('about', {
+            url: '/about',
+            templateUrl: '../views/about.html',
+            controller: 'aboutCtrl'
+        });
+});
+
+dataDash.controller('imsgCtrl', ['$scope', '$http', '$firebaseObject', function($scope, $http, $firebaseObject) {
+
+
+    //var ref = new Firebase("https://sizzling-fire-3946.firebaseIO.com");
+    //
+    //$scope.berichten = $firebaseObject(ref);
 
     $http.get('/api/messages')
         .success(function(data) {
@@ -23,17 +50,17 @@ dataDash.controller('imsgCtrl', ['$scope', '$http', function($scope, $http) {
             console.log('Error: ' + data);
         });
     //
-    //$http.get('data/daphne_small.json').success(function(data) {
-    //
-    //    $scope.messages = data;
-    //    angular.forEach(data, function(value, key)
-    //            {
-    //        var date = new Date(value.date);
-    //        value.date = date.toISOString();
-    //        $scope.messages = data;
-    //            });
-    //
-    //    });
+    $http.get('data/daphne_small.json').success(function(data) {
+
+        $scope.messages = data;
+        angular.forEach(data, function(value, key)
+                {
+            var date = new Date(value.date);
+            value.date = date.toISOString();
+            $scope.messages = data;
+                });
+
+        });
 
     $http.get('data/people.json').success(function(data) {
         $scope.people = data;
@@ -42,6 +69,7 @@ dataDash.controller('imsgCtrl', ['$scope', '$http', function($scope, $http) {
 
 
     $scope.terms =[];
+    $scope.dates = [];
 
     $scope.addTerm = function () {
 
@@ -52,12 +80,8 @@ dataDash.controller('imsgCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.addDate = function () {
 
 
-        $scope.terms.push({text:$scope.date, count:$scope.filtered.length});
+        $scope.dates.push({date:$scope.date, count:$scope.filtered.length});
     };
-
-
-
-
 
 }]);
 
@@ -66,14 +90,7 @@ dataDash.controller('imsgCtrl', ['$scope', '$http', function($scope, $http) {
 
 
 
-dataDash.controller('TabController', function(){
-    this.tab = 1;
+dataDash.controller('aboutCtrl', function($scope){
 
-    this.setTab = function(newValue){
-        this.tab = newValue;
-    };
-
-    this.isSet = function(tabName){
-        return this.tab === tabName;
-    };
+    $scope.tagline = 'About iMessage'
 });

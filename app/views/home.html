@@ -1,0 +1,61 @@
+<div class="col-md-2"></div>
+
+<div class="col-md-4 fade-in">
+    <h2>Messages</h2>
+
+    <div id="frame">
+    <ul>
+    <li ng-repeat="message in filtered = (messages | filter:query | filter:date)" class="messagesVis" ng-class="{other:message.fromMe== 0, me:message.fromMe==1}" >
+
+    <span class="text-left animated bounceIn" ng-if="message.fromMe == 0">
+    <h9></h9>
+    <h9></h9>
+    </span>
+    <span ng-if="message.fromMe == 1">
+    <h9></h9>
+    </span>
+    <h9>{{message.text}}<br>
+    {{message.date | date:'dd-MM-yy  HH:mm'}}</h9>
+    </li>
+    </ul>
+    </div>
+    <!--<div id="frame">-->
+        <!--<ul>-->
+            <!--<li ng-repeat="bericht in berichten | filter:query">-->
+
+                            <!--<span class="text-left animated bounceIn" ng-if="bericht.fromMe == 0">-->
+                              <!--<h9></h9>-->
+                              <!--<h9></h9>-->
+                            <!--</span>-->
+                            <!--<span ng-if="bericht.fromMe == 1">-->
+                             <!--<h9></h9>-->
+                            <!--</span>-->
+                <!--<h9>{{bericht.text}}<br>-->
+                    <!--{{bericht.date | date:'dd-MM-yy  HH:mm'}}</h9>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-3 fade-in"><h2>Results<br>
+
+    <table>
+        <thead>
+        <tr>
+            <th><h4>Date</h4></th>
+
+            <th><h4>Count</h4></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="term in terms">
+            <td >{{term.text}}</td>
+
+            <td>{{term.count}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</h2></div>
+<div class="col-md-2"></div>
