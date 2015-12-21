@@ -2,31 +2,7 @@
 
 /* Controllers */
 
-// Define app and its dependencies
 
-var dataDash = angular.module('dataDash', ['firebase', 'ui.router']);
-
-
-
-dataDash.config(function($stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise('/home');
-
-    $stateProvider
-
-    // HOME STATES AND NESTED VIEWS ========================================
-        .state('home', {
-            url: '/home',
-            templateUrl: '../views/home.html'
-        })
-
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
-            url: '/about',
-            templateUrl: '../views/about.html',
-            controller: 'aboutCtrl'
-        });
-});
 
 dataDash.controller('imsgCtrl', ['$scope', '$http', '$firebaseObject', function($scope, $http, $firebaseObject) {
 
@@ -79,8 +55,7 @@ dataDash.controller('imsgCtrl', ['$scope', '$http', '$firebaseObject', function(
 
     $scope.addDate = function () {
 
-
-        $scope.dates.push({date:$scope.date, count:$scope.filtered.length});
+                $scope.dates.push({date:$scope.date, count:$scope.filtered.length});
     };
 
 }]);
