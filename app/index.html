@@ -6,7 +6,7 @@
     <meta name="description" content="Analyse what you have been talking about and with whom, how often and when. Everything you always wanted to know visualized!">
     <meta name="keywords" content="analyze, aivd, messages, imsg, statistics, data">
     <meta name="author" content="Santi van den Toorn productions">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- jQuery is used for JavaScript animations (include this before angular.js) -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -21,6 +21,7 @@
   <script src="bower_components/angular/angular.js"></script>
     <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
+    <script src="js/services/messages.js"></script>
 
     <script src="js/config.js"></script>
     <!-- Firebase -->
@@ -54,7 +55,7 @@
                             iMessage Analyzer <br> Know what's up.
                         </h1>
                         <p>
-                            <a class="explore" ui-sref="home">Home</a>  <a class="explore" ui-sref="about">About</a>
+                            <a class="explore" ui-sref="home" ui-sref-active="active">Home</a>  <a class="explore" ui-sref="about" ui-sref-active="active">About</a>  <a class="explore" ui-sref-active="active" ui-sref="people">People</a>
                         </p>
                     </div>
                 </div>
@@ -62,97 +63,12 @@
         </div>
     </header>
 
+    <!--// in this div the dynamic content is loaded-->
 
-
-    <main id="tools">
-       <section id="search">
-        <div class="container-fluid">
-            <div class="row">
-
-                <div class="col-md-2"></div>
-
-                <div class="col-md-8 menu">
-
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input class="form-control" ng-model="query" placeholder="Search..." id="query">
-                        </div>
-
-                        <div class="form-group">
-                            <input class="form-control"  ng-model="date" placeholder="yyyy-mm-dd" id="date">
-                        </div>
-                        <button ng-show="query && !date"  ng-click="addTerm()" class="btn btn-default">Add query</button>
-                        <button ng-show="date && !query" ng-click="addDate()" class="btn btn-default">Add date</button>
-                        <button ng-show="date && query" ng-click="addTerm() && addDate()" class="btn btn-default">Add both</button>
-
-                    </form>
-
-                    <p ng-show="query && !date"> {{filtered.length}} messages were found containing your search query.</p><BR>
-                    <p ng-show="date && !query"> {{filtered.length}} messages were found for your selected date.</p>
-                    <p ng-show="date && query"> {{filtered.length}} messages were found for your query on the selected date.</p>
-
-                </div>
-
-                <div class="col-md-2"></div>
-
-            </div>
-
-        </div>
-       </section>
-
-       <section id="messages">
-        <div class="container-fluid">
-
-            <div class="row">
-
-                <div ui-view></div>
+    <div ui-view></div>
 
 
 
-            </div>
-
-        </div>
-       </section>
-
-    </main>
-
-
-    <section id="results">
-        <div class="container-fluid">
-            <div class="row">
-
-
-                <div class="col-md-2"></div>
-                <div class="col-md-3">
-                    <img src="img/data.png" width="" alt="">
-                </div>
-                <div class="col-md-5">
-                    <h2>Results table</h2>
-                    <p>
-
-                    </p>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th><h4>Word</h4></th>
-
-                            <th><h4>Count</h4></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="date in dates">
-                            <td >{{date.date}}</td>
-
-                            <td>{{date.count}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-    </section>
 
     <!-- footer row-->
     <footer>
@@ -163,16 +79,16 @@
                    <img src="img/svdt.png"  height="50" alt="SvdT productions"></a>
                 </div>
                 <div class="col-xs-6 col-sm-3">
-                    <h4>About</h4>
+                    <h4>Sitemap</h4>
                     <ul>
                         <li>
-                            <a href="">Content</a>
+                            <a ui-sref="home"">Home</a>
                         </li>
                         <li>
-                            <a href="">Content</a>
+                            <a ui-sref="people">People</a>
                         </li>
                         <li>
-                            <a href="">Content</a>
+                            <a ui-sref="about">About</a>
                         </li>
                         <li>
                             <a href="/"></a>
@@ -183,10 +99,10 @@
                     <h4>Connect</h4>
                     <ul>
                         <li>
-                            <a href="">Twitter</a>
+                            <a href="http://www.santivandentoorn.com" target="_blank">SvdT</a>
                         </li>
                         <li>
-                            <a href="">Github</a>
+                            <a href="https://github.com/santivdt/iMessage" target="_blank">Github</a>
                         </li>
                         <li>
                             <a href=""></a>

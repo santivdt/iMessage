@@ -9,7 +9,9 @@ dataDash.config(function($stateProvider, $urlRouterProvider) {
     // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',
-            templateUrl: '../views/home.html'
+            templateUrl: '../views/home.html',
+            controller: 'imsgCtrl'
+
         })
 
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
