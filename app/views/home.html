@@ -9,17 +9,17 @@
 
                     <form class="form-inline">
                         <div class="form-group">
-                            <input class="form-control" ng-model="query" placeholder="Search..." id="query">
+                            <input class="form-control" ng-model="query" placeholder="Search..." id="query" style="margin-bottom:20px;">
                         </div>
 
                         <div class="form-group">
-                            <input class="form-control"  ng-model="date" placeholder="yyyy-mm-dd" id="date">
+                            <input class="form-control"  ng-model="date" placeholder="yyyy-mm-dd" id="date" style="margin-bottom:20px;">
                         </div>
 
-                        <button ng-show="query && !date"  ng-click="addTerm()" class="btn btn-default">Add query</button>
-                        <button ng-show="date && !query" ng-click="addDate()" class="btn btn-default">Add date</button>
-                        <button ng-show="date && query" ng-click="addTerm() && addDate()" class="btn btn-default">Add both</button>
-<br>
+                        <button ng-show="query && !date"  ng-click="addTerm()" class="btn btn-default" style="margin-bottom:20px;">Add query</button>
+                        <button ng-show="date && !query" ng-click="addDate()" class="btn btn-default" style="margin-bottom:20px;">Add date</button>
+                        <button ng-show="date && query" ng-click="addTerm() && addDate()" class="btn btn-default" style="margin-bottom:20px;">Add both</button>
+
                     </form>
 
                     <p ng-show="query && !date"> {{filtered.length}} messages were found containing your search query.</p>
