@@ -7,9 +7,8 @@ var morgan = require('morgan');             // log requests to the console (expr
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
-var db = mongoose.createConnection(
-    'mongodb://localhost/test');
 
+mongoose.connect( 'mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
@@ -18,7 +17,7 @@ db.once('open', function (callback) {
 
 
 
-app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will // be /img for users
+//app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will // be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -26,34 +25,8 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 app.use(express.static('app'));
 
-// listen (start app with node server.js) ======================================
-app.listen(8080);
-console.log("App listening on port 8080");
 
 
-// serve frontend met backend
-
-app.get('*', function(req, res) {
-    res.sendfile('app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
-
-
-var collection = db.collection('messages');
-//Create some users
-var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
-var user2 = {name: 'modulus user', age: 22, roles: ['user']};
-var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
-
-// Insert some users
-collection.insert([user1, user2, user3], function (err, result) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
-    }
-    //Close connection
-    db.close();
-});
 
 
 
@@ -62,7 +35,7 @@ collection.insert([user1, user2, user3], function (err, result) {
 
 var messageSchema = mongoose.Schema({
     text: String,
-    fromMe: Number,
+    fromMe: Boolean,
     date: String
 });
 
@@ -78,3 +51,63 @@ console.log(bericht.text);
 
 // routes ======================================================================
 
+// api ---------------------------------------------------------------------
+var api = {};
+
+api.messages = function (req, res) {
+    console.log('-----> api')
+    var page = parseInt(req.query.page),
+        size = parseInt(req.query.size),
+        skip = page > 0 ? ((page - 1) * size) : 0;
+
+    var messagesObj = {
+        totalItems: null,
+        messages: null
+    }
+    var query = Message.find();
+
+    var getMessagesCount = function() {
+        return query
+            .count(function (err, totalItems) {
+                if (err) {
+                    res.json(500, err);
+                }
+                else {
+                    messagesObj.totalItems = totalItems;
+                    getPaginatedMessages();
+                }
+            });
+    };
+
+    var getPaginatedMessages = function(){
+        return query
+            .skip(skip)
+            .limit(size)
+            .exec('find', function(err, messages) {
+                if(err) {
+                    res.json(500, err);
+                }
+                else {
+                    messagesObj.messages = messages;
+                    res.json(messagesObj);
+                }
+            });
+    }
+
+    getMessagesCount();
+};
+
+// get all messages
+app.get('/api/messages', api.messages);
+
+
+// listen (start app with node server.js) ======================================
+app.listen(8080);
+console.log("App listening on port 8080");
+
+
+// serve frontend met backend
+
+app.get('/', function(req, res) {
+    res.sendfile('app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
